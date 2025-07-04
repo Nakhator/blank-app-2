@@ -20,6 +20,13 @@ st.set_page_config(page_title="Travel Cost Predictor", page_icon="✈️", layou
 
 # Title and description
 st.title("✈️ Travel Cost Predictor")
+st.markdown("""
+Predict travel costs with these enforced rules:
+1. Daily rate stays constant
+2. Total = Daily rate × Nights
+3. Resort most expensive, Hostel cheapest
+4. Flights most expensive transport
+""")
 
 # Custom constrained model class
 class ConstrainedRandomForest(BaseEstimator, RegressorMixin):
@@ -301,7 +308,7 @@ if data is not None:
                     'Destination': trans_dest,
                     'TransportType': trans_type,
                     'TravelerNationality': trans_nat,
-                    'IsPeakSeason': int(is_peak)
+                    'IsPeakSeason': int(is_peak) 
                 }])
                 
                 trans_cost = model.predict(input_data)[0]
